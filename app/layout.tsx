@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   viewport: {
     width: "device-width",
     initialScale: 1,
-    viewTransitions: true, // Re-enable view transitions
+
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'  // Corregir indentación
 }
 
 export default function RootLayout({
@@ -37,7 +37,3 @@ export default function RootLayout({
     </html>
   )
 }
-
-
-
-import './globals.css'

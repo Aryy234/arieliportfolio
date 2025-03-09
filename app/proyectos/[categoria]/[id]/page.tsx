@@ -17,6 +17,8 @@ export default function ProyectoDetallePage({
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  
+  // El resto del código permanece igual
 
   const handleGoBack = () => {
     if (document.startViewTransition) {
@@ -95,7 +97,7 @@ export default function ProyectoDetallePage({
           {/* Galería de miniaturas */}
           {proyecto.imagenes.length > 1 && (
             <div className="p-4 bg-gray-900 flex overflow-x-auto gap-2">
-              {proyecto.imagenes.map((imagen, index) => (
+              {proyecto.imagenes.map((imagen: string, index: number) => (
                 <div
                   key={index}
                   className={`relative w-20 h-20 flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity ${
@@ -132,7 +134,7 @@ export default function ProyectoDetallePage({
             <p className="text-gray-300 mb-6 text-lg">{proyecto.descripcion}</p>
 
             <div className="flex flex-wrap gap-2 mb-8">
-              {proyecto.tecnologias.map((tech, index) => (
+              {proyecto.tecnologias.map((tech: string, index: number) => (
                 <span key={index} className="bg-gray-700 text-gray-300 px-3 py-1 rounded-full">
                   {tech}
                 </span>

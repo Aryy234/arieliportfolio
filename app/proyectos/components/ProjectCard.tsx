@@ -6,7 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, Github, Star, Play } from "lucide-react"
 import { useState, useRef, useEffect } from "react"
-import type { Project } from "../data/proyectsData"
+import type { Project } from "@/types"
 
 interface ProjectCardProps {
   project: Project
@@ -155,7 +155,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
           {project.tecnologias.map((tech, index) => (
             <span
               key={index}
-              className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded-full transition-transform transition-colors hover:scale-110 hover:text-gray-50 hover:bg-emerald-500 duration-200"
+              className="bg-gray-700 text-gray-300 text-xs px-2 py-1 rounded-full transition hover:scale-110 hover:text-gray-50 hover:bg-emerald-500 duration-200"
             >
               {tech}
             </span>

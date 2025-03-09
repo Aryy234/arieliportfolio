@@ -3,9 +3,9 @@ import { Briefcase, Calendar, ChevronDown, ChevronUp } from "lucide-react";
 import { jobs } from "./data/jobsData";
 
 const ExperienceSection = () => {
-  const [expandedJobs, setExpandedJobs] = useState({});
+  const [expandedJobs, setExpandedJobs] = useState<Record<number, boolean>>({});
 
-  const toggleJob = (index) => {
+  const toggleJob = (index: number) => {
     setExpandedJobs((prev) => ({
       ...prev,
       [index]: !prev[index],
@@ -58,7 +58,7 @@ const ExperienceSection = () => {
             {expandedJobs[index] && (
               <div className="p-6 text-white animate-fadeIn">
                 <ul className="space-y-4 text-base md:text-lg">
-                  {job.description.map((item, itemIndex) => (
+                  {job.description.map((item: string, itemIndex: number) => (
                     <li key={itemIndex} className="flex items-start text-gray-200">
                       <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 mt-2 mr-3 flex-shrink-0"></span>
                       <span className="text-justify">{item}</span>

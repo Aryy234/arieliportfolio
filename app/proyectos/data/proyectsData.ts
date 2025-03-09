@@ -1,3 +1,4 @@
+// Define an interface for the Project type based on the data structure
 import type { Project } from "@/types"
 
 // app/proyectos/data/projectsData.ts
