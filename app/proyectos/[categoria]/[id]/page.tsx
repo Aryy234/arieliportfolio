@@ -1,25 +1,32 @@
 "use client"
 
-import { getProyectoPorId } from "../../data/proyectsData"
-import Image from "next/image"
 import { Github, ExternalLink, ArrowLeft, Calendar, User } from "lucide-react"
 import { useRouter } from "next/navigation"
 import AnimatedBackground from "@/components/AnimatedBackground"
 import { useState, useRef } from "react"
+import { use } from "react"
+import { getProyectoPorId } from "../../data/proyectsData"
+import Image from "next/image"
+
+// Definir el tipo correcto para los parámetros
+type PageParams = { 
+  categoria: string; 
+  id: string 
+};
 
 export default function ProyectoDetallePage({
   params,
 }: {
-  params: { categoria: string; id: string }
+  params: Promise<PageParams> | PageParams;
 }) {
+  // Desenvolver params con React.use() y tipado correcto
+  const unwrappedParams = use(params as Promise<PageParams>);
   const router = useRouter()
-  const proyecto = getProyectoPorId(params.id)
+  const proyecto = getProyectoPorId(unwrappedParams.id)
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [videoError, setVideoError] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
   
-  // El resto del código permanece igual
-
   const handleGoBack = () => {
     if (document.startViewTransition) {
       document.startViewTransition(() => {
@@ -181,4 +188,3 @@ export default function ProyectoDetallePage({
     </>
   )
 }
-

@@ -19,6 +19,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [videoError, setVideoError] = useState(false)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const playPromiseRef = useRef<Promise<void> | null>(null)
 
   // Reset video error state when project changes
   useEffect(() => {
@@ -31,18 +32,42 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
     setActiveVideo(true)
     if (videoRef.current) {
-      videoRef.current.play().catch((error) => {
+      // Store the play promise to track when it resolves
+      playPromiseRef.current = videoRef.current.play()
+      
+      // Handle any play errors
+      playPromiseRef.current?.catch((error) => {
         console.error("Error playing video:", error)
         setVideoError(true)
+        playPromiseRef.current = null
       })
     }
   }
 
   const handleVideoLeave = () => {
     setActiveVideo(false)
+    
     if (videoRef.current && !videoError) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
+      // Only pause if the play promise has resolved
+      if (playPromiseRef.current) {
+        playPromiseRef.current
+          .then(() => {
+            if (videoRef.current) {
+              videoRef.current.pause()
+              videoRef.current.currentTime = 0
+            }
+          })
+          .catch(() => {
+            // Play was already aborted or failed, do nothing
+          })
+          .finally(() => {
+            playPromiseRef.current = null
+          })
+      } else {
+        // No play in progress, safe to pause
+        videoRef.current.pause()
+        videoRef.current.currentTime = 0
+      }
     }
   }
 
@@ -186,4 +211,3 @@ export function ProjectCard({ project }: ProjectCardProps) {
     </div>
   )
 }
-
