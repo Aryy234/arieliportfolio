@@ -9,7 +9,7 @@ export const proyectos: Project[] = [
     titulo: "Sistema de Reconocimiento de Voz",
     tecnologias: ["Python", "TensorFlow", "PyTorch", "Numpy"],
     rol: "Desarrollador de Machine Learning",
-    descripcion: "Aplicación avanzada de reconocimiento de voz con capacidades de traducción en tiempo real.",
+    descripcion: "Aplicación avanzada de reconocimiento de voz con capacidades de traducción en tiempo real version 2.",
     estado: "En desarrollo",
     githubLink: "https://github.com/username/voice-recognition",
     demoLink: "https://voice-recognition-demo.vercel.app",
