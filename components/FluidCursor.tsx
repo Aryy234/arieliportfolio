@@ -1,10 +1,8 @@
 "use client"
 
 import { useEffect } from "react"
-import dynamic from 'next/dynamic'
 
-// Componente interno que contiene toda la lógica del cursor
-const FluidCursorInner = () => {
+const FluidCursor = () => {
   useEffect(() => {
     // Eliminar cualquier elemento cursor anterior para evitar duplicados
     const oldCursor = document.getElementById("cursor")
@@ -134,7 +132,5 @@ const FluidCursorInner = () => {
   return null
 }
 
-// Exportamos un componente que se carga dinámicamente solo en el cliente
-export default dynamic(() => Promise.resolve(FluidCursorInner), { 
-  ssr: false 
-})
+export default FluidCursor
+
