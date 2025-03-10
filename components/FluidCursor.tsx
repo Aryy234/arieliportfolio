@@ -46,8 +46,8 @@ const FluidCursor = () => {
     // Variables para el seguimiento del cursor
     let mouseX = 0
     let mouseY = 0
-    let cursorCircles = []
-    const cursorHistory = Array(TAIL_LENGTH).fill({ x: 0, y: 0 })
+    let cursorCircles: HTMLDivElement[] = []
+    const cursorHistory = Array(TAIL_LENGTH).fill(0).map(() => ({ x: 0, y: 0 }))
 
     // Función para inicializar los círculos del cursor
     function initCursor() {
@@ -92,7 +92,7 @@ const FluidCursor = () => {
     }
 
     // Función para manejar el movimiento del mouse
-    function onMouseMove(event) {
+    function onMouseMove(event: MouseEvent) {
       mouseX = event.clientX
       mouseY = event.clientY
     }
